@@ -1,17 +1,14 @@
-FROM python:3.7.3-stretch
+FROM python:alpine
 
-WORKDIR /app
+WORKDIR /app/
 
-COPY . app.py /app/
+COPY . . 
 
 RUN pip install --upgrade pip && \ 
     pip install --trusted-host pypi.python.org -r requirements.txt 
 
 EXPOSE 5000
 
-# Run app.py at container launch 
-CMD ["flask", "run"]
+ENTRYPOINT [ "python" ]
 
-
-
-
+CMD ["app.py"]
